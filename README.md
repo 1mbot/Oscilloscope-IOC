@@ -91,7 +91,3 @@ The **`oscilloscope.proto`** file maps SCPI commands to EPICS records.
 
 ## **Author & Contributions**  
 Developed by **[1mbot](https://github.com/1mbot)**.  
-
----
-
-Let me know if you want to add anything! 🚀

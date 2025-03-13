@@ -1,0 +1,201 @@
+# Database for RTM3000 Oscilloscope Control via RS232
+
+# Device Identification
+record(stringin, "osc:idn") {
+    field(DESC, "Oscilloscope ID")
+    field(DTYP, "stream")
+    field(INP, "@oscilloscope.proto getIDN $(PORT)")
+}
+
+# Channel Control
+record(bo, "osc:channel_enable") {
+    field(DESC, "Enable Channel")
+    field(DTYP, "stream")
+    field(OUT, "@oscilloscope.proto setChannel $(PORT)")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+
+record(bi, "osc:channel_status") {
+    field(DESC, "Channel Status")
+    field(DTYP, "stream")
+    field(INP, "@oscilloscope.proto getChannel $(PORT)")
+}
+
+# Voltage Measurement
+record(ai, "osc:voltage") {
+    field(DESC, "Measured Voltage (DC)")
+    field(DTYP, "stream")
+    field(INP, "@oscilloscope.proto getVoltage $(PORT)")
+    field(EGU, "Volts")
+}
+
+# Current Measurement
+record(ai, "osc:current") {
+    field(DESC, "Measured Current (DC)")
+    field(DTYP, "stream")
+    field(INP, "@oscilloscope.proto getCurrent $(PORT)")
+    field(EGU, "Amps")
+}
+
+# Frequency Measurement
+record(ai, "osc:frequency") {
+    field(DESC, "Measured Frequency")
+    field(DTYP, "stream")
+    field(INP, "@oscilloscope.proto getFrequency $(PORT)")
+    field(EGU, "Hz")
+}
+
+# Period Measurement
+record(ai, "osc:period") {
+    field(DESC, "Measured Period")
+    field(DTYP, "stream")
+    field(INP, "@oscilloscope.proto getPeriod $(PORT)")
+    field(EGU, "s")
+}
+
+# Voltage Scale (Volts/Div)
+record(ao, "osc:voltage_scale") {
+    field(DESC, "Set Voltage Scale (V/div)")
+    field(DTYP, "stream")
+    field(OUT, "@oscilloscope.proto setVoltageScale $(PORT)")
+    field(EGU, "V/div")
+}
+
+record(ai, "osc:voltage_scale_read") {
+    field(DESC, "Read Voltage Scale (V/div)")
+    field(DTYP, "stream")
+    field(INP, "@oscilloscope.proto getVoltageScale $(PORT)")
+    field(EGU, "V/div")
+}
+
+# Voltage Offset
+record(ao, "osc:voltage_offset") {
+    field(DESC, "Set Voltage Offset")
+    field(DTYP, "stream")
+    field(OUT, "@oscilloscope.proto setVoltageOffset $(PORT)")
+    field(EGU, "V")
+}
+
+record(ai, "osc:voltage_offset_read") {
+    field(DESC, "Read Voltage Offset")
+    field(DTYP, "stream")
+    field(INP, "@oscilloscope.proto getVoltageOffset $(PORT)")
+    field(EGU, "V")
+}
+
+# Timebase Settings
+record(ao, "osc:timebase") {
+    field(DESC, "Set Timebase Scale")
+    field(DTYP, "stream")
+    field(OUT, "@oscilloscope.proto setTimebase $(PORT)")
+    field(EGU, "s/div")
+}
+
+record(ai, "osc:timebase_read") {
+    field(DESC, "Read Timebase Scale")
+    field(DTYP, "stream")
+    field(INP, "@oscilloscope.proto getTimebase $(PORT)")
+    field(EGU, "s/div")
+}
+
+# Trigger Mode
+record(bo, "osc:trigger_mode") {
+    field(DESC, "Set Trigger Mode")
+    field(DTYP, "stream")
+    field(OUT, "@oscilloscope.proto setTriggerMode $(PORT)")
+    field(ZNAM, "Edge")
+    field(ONAM, "Pulse")
+}
+
+record(stringin, "osc:trigger_mode_read") {
+    field(DESC, "Read Trigger Mode")
+    field(DTYP, "stream")
+    field(INP, "@oscilloscope.proto getTriggerMode $(PORT)")
+}
+
+# Trigger Level
+record(ao, "osc:trigger_level") {
+    field(DESC, "Set Trigger Level")
+    field(DTYP, "stream")
+    field(OUT, "@oscilloscope.proto setTriggerLevel $(PORT)")
+    field(EGU, "V")
+}
+
+record(ai, "osc:trigger_level_read") {
+    field(DESC, "Read Trigger Level")
+    field(DTYP, "stream")
+    field(INP, "@oscilloscope.proto getTriggerLevel $(PORT)")
+    field(EGU, "V")
+}
+
+# Acquisition Control
+record(bo, "osc:acquisition_start") {
+    field(DESC, "Start Acquisition")
+    field(DTYP, "stream")
+    field(OUT, "@oscilloscope.proto startAcquisition $(PORT)")
+    field(ZNAM, "Stop")
+    field(ONAM, "Run")
+}
+
+record(bo, "osc:acquisition_stop") {
+    field(DESC, "Stop Acquisition")
+    field(DTYP, "stream")
+    field(OUT, "@oscilloscope.proto stopAcquisition $(PORT)")
+    field(ZNAM, "Stop")
+    field(ONAM, "Run")
+}
+
+record(stringin, "osc:acquisition_state") {
+    field(DESC, "Acquisition State")
+    field(DTYP, "stream")
+    field(INP, "@oscilloscope.proto getAcquisitionState $(PORT)")
+}
+
+# Sampling Rate
+record(ao, "osc:sampling_rate") {
+    field(DESC, "Set Sampling Rate")
+    field(DTYP, "stream")
+    field(OUT, "@oscilloscope.proto setSamplingRate $(PORT)")
+    field(EGU, "S/s")
+}
+
+record(ai, "osc:sampling_rate_read") {
+    field(DESC, "Read Sampling Rate")
+    field(DTYP, "stream")
+    field(INP, "@oscilloscope.proto getSamplingRate $(PORT)")
+    field(EGU, "S/s")
+}
+
+# Memory Depth
+record(ao, "osc:memory_depth") {
+    field(DESC, "Set Memory Depth")
+    field(DTYP, "stream")
+    field(OUT, "@oscilloscope.proto setMemoryDepth $(PORT)")
+    field(EGU, "Points")
+}
+
+record(ai, "osc:memory_depth_read") {
+    field(DESC, "Read Memory Depth")
+    field(DTYP, "stream")
+    field(INP, "@oscilloscope.proto getMemoryDepth $(PORT)")
+    field(EGU, "Points")
+}
+
+# Save Screenshot
+record(ao, "osc:save_screenshot") {
+    field(DESC, "Save Screenshot")
+    field(DTYP, "stream")
+    field(OUT, "@oscilloscope.proto saveScreenshot $(PORT)")
+}
+
+# Reset the Oscilloscope
+record(bo, "osc:reset") {
+    field(DESC, "Reset Oscilloscope")
+    field(DTYP, "stream")
+    field(OUT, "@oscilloscope.proto resetDevice $(PORT)")
+    field(ZNAM, "No")
+    field(ONAM, "Reset")
+}
+
+	

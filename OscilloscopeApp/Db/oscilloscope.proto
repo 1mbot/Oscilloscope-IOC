@@ -1,155 +1,68 @@
-######################################
-# Protocol file for RTM3000 Oscilloscope
-# Communication via RS232
-######################################
-
-# Terminators (based on SCPI format)
 OutTerminator = LF;
 InTerminator = LF;
-
-# Identification
-getIDN {
-    out "*IDN?";
-    in "%s";
-}
-
-# Channel Selection (Set & Get)
-setChannel {
-    out "CHAN%{d}:DISP ON";
-}
-getChannel {
-    out "CHAN%{d}:DISP?";
-    in "%d";
-}
-
-# Measure Voltage
-getVoltage {
-    out "MEAS:VOLT:DC?";
-    in "%f";
-}
-
-# Measure Current (If Applicable)
-getCurrent {
-    out "MEAS:CURR:DC?";
-    in "%f";
-}
-
-# Measure Frequency
-getFrequency {
-    out "MEAS:FREQ?";
-    in "%f";
-}
-
-# Measure Period
-getPeriod {
-    out "MEAS:PER?";
-    in "%f";
-}
-
-# Set Voltage Scale (Volts/Div)
-setVoltageScale {
-    out "CHAN%{d}:SCAL %f";
-}
-getVoltageScale {
-    out "CHAN%{d}:SCAL?";
-    in "%f";
-}
-
-# Set Voltage Offset
-setVoltageOffset {
-    out "CHAN%{d}:OFFS %f";
-}
-getVoltageOffset {
-    out "CHAN%{d}:OFFS?";
-    in "%f";
-}
-
-# Set & Get Timebase Scale
-setTimebase {
-    out "TIM:SCAL %f";
-}
-getTimebase {
-    out "TIM:SCAL?";
-    in "%f";
-}
-
-# Set & Get Trigger Mode
-setTriggerMode {
-    out "TRIG:MODE %s";
-}
-getTriggerMode {
-    out "TRIG:MODE?";
-    in "%s";
-}
-
-# Set & Get Trigger Level
-setTriggerLevel {
-    out "TRIG:LEV %f";
-}
-getTriggerLevel {
-    out "TRIG:LEV?";
-    in "%f";
-}
-
-# Start & Stop Acquisition
-startAcquisition {
-    out "ACQ:STATE RUN";
-}
-stopAcquisition {
-    out "ACQ:STATE STOP";
-}
-
-# Get Acquisition State
-getAcquisitionState {
-    out "ACQ:STATE?";
-    in "%s";
-}
-
-# Get Waveform Data (Raw Binary)
-getWaveform {
-    out "WAV:DATA?";
-    in "%#b";
-}
-
-# Set & Get Sampling Rate
-setSamplingRate {
-    out "ACQ:SRAT %f";
-}
-getSamplingRate {
-    out "ACQ:SRAT?";
-    in "%f";
-}
-
-# Set & Get Memory Depth
-setMemoryDepth {
-    out "ACQ:POIN %d";
-}
-getMemoryDepth {
-    out "ACQ:POIN?";
-    in "%d";
-}
-
-# Enable & Disable Channels
-enableChannel {
-    out "CHAN%{d}:DISP ON";
-}
-disableChannel {
-    out "CHAN%{d}:DISP OFF";
-}
-getChannelState {
-    out "CHAN%{d}:DISP?";
-    in "%d";
-}
-
-# Save Screenshot (if supported)
-saveScreenshot {
-    out "HCOP:DEST 'MMEM'";
-    out "MMEM:NAME '%s'";
-    out "HCOP:IMM";
-}
-
-# Reset the Oscilloscope
-resetDevice {
+ReplyTimeout = 50000;
+ReadTimeout = 2000; 
+reset {
     out "*RST";
 }
 
+enableChannel1 {
+    out "CHAN1:STAT ON";
+}
+
+enableChannel2 {
+    out "CHAN2:STAT ON";
+}
+
+enableChannel3 {
+    out "CHAN3:STAT ON";
+}
+
+enableChannel4 {
+    out "CHAN4:STAT ON";
+}
+
+getWaveformData1 {
+    separator=",";
+    out "CHAN1:DATA?";
+    in "%f";
+}
+
+getWaveformData2 {
+    separator=",";
+    out "CHAN2:DATA?";
+    in "%f";
+}
+
+getWaveformData3 {
+    separator=",";
+    out "CHAN3:DATA?";
+    in "%f";
+}
+
+getWaveformData4 {
+    separator=",";
+    out "CHAN4:DATA?";
+    in "%f";
+}
+
+setMaxDataPoints {
+    out "CHAN:DATA:POIN:DMAX";
+}
+
+setFormatASCII {
+    out "FORM ASC";
+}
+
+setByteOrder {
+    out "FORM:BORD LSBF";
+}
+
+singleAcquisition {
+    out "SING;*OPC?";
+}
+
+getWaveformHeader {
+    out "CHAN:DATA:HEAD?";
+    in "%s";
+}

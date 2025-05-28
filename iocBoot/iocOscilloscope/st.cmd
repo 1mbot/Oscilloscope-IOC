@@ -19,8 +19,8 @@ cd "${TOP}"
 ## Register all support components
 dbLoadDatabase "dbd/Oscilloscope.dbd"
 Oscilloscope_registerRecordDeviceDriver pdbbase
-drvAsynSerialPortConfigure("OSCILLOSCOPE", "/dev/ttyUSB0")
-dbLoadRecords("db/oscilloscope.db", "PORT = OSCILLOSCOPE")
+drvAsynIPPortConfigure("OSCILLO", "120.10.10.247:4024")
+dbLoadRecords("db/oscilloscope.db", "PORT = OSCILLO")
 ## Load record instances
 #dbLoadRecords("db/Oscilloscope.db","user=tifr")
 

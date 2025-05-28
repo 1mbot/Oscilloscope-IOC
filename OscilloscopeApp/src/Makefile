@@ -20,7 +20,7 @@ DBD += Oscilloscope.dbd
 Oscilloscope_DBD += base.dbd
 Oscilloscope_DBD += asyn.dbd
 Oscilloscope_DBD += stream.dbd
-Oscilloscope_DBD += drvAsynSerialPort.dbd
+Oscilloscope_DBD += drvAsynIPPort.dbd
 
 # Include dbd files from all support applications:
 #Oscilloscope_DBD += xxx.dbd

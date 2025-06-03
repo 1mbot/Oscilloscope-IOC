@@ -128,7 +128,7 @@ record(waveform, "Waveform_CH1")
     field(INP, "@oscilloscope.proto getWaveformData1 OSCILLO") 
     field(FTVL, "FLOAT") 
     field(NELM, "200000") 
-    field(SCAN, "10 second") 
+    field(SCAN, "1 second") 
     field(MPST, "Always")
 }
 
